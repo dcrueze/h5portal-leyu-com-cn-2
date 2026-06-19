@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dcrueze.github.io/h5portal-leyu-com-cn-2/sitemap.xml

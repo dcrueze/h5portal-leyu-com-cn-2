@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>再与乐鱼体育相逢 · 持续关注的页面</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: #f2f4f6;
+      color: #1e293b;
+      line-height: 1.6;
+      padding: 2rem 1.2rem;
+    }
+
+    .page {
+      max-width: 820px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.04), 0 1px 4px rgba(0,0,0,0.02);
+      padding: 2.5rem 2rem;
+      border: 1px solid #e9edf0;
+    }
+
+    /* 开场短句 — 紧凑、耐读 */
+    .hero-tag {
+      font-size: 0.8rem;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      color: #68809a;
+      background: #eef2f6;
+      display: inline-block;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      margin-bottom: 1.6rem;
+      font-weight: 500;
+      border: 1px solid #dce2e8;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 0.9rem;
+      color: #0b1e2e;
+    }
+
+    .intro {
+      font-size: 1.1rem;
+      background: #f6f8fa;
+      border-radius: 20px;
+      padding: 1.4rem 1.6rem;
+      border: 1px solid #e9edf2;
+      margin: 1.8rem 0 2.2rem 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      color: #1e2c3a;
+    }
+
+    .intro strong {
+      font-weight: 600;
+      color: #0b2a44;
+    }
+
+    .intro a {
+      color: #1a4b6d;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #b9cbd9;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .intro a:hover {
+      border-bottom-color: #1a4b6d;
+      color: #0d2f49;
+    }
+
+    /* 特点卡片 — 四象限简洁展示 */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin: 2.4rem 0 2.8rem 0;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.4rem 1.2rem 1.6rem 1.2rem;
+      border: 1px solid #e3e9ef;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      transition: box-shadow 0.2s ease, border-color 0.15s;
+    }
+
+    .card:hover {
+      border-color: #cbd9e3;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1d3349;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .card p {
+      font-size: 0.93rem;
+      color: #3a4f63;
+      line-height: 1.5;
+    }
+
+    /* 温和的承接段 */
+    .bridge {
+      padding: 1.2rem 0.2rem 0.8rem 0.2rem;
+      font-size: 1rem;
+      border-top: 1px solid #edf1f5;
+      margin-top: 0.8rem;
+      color: #2f4357;
+    }
+
+    .bridge a {
+      color: #1a4b6d;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #c6d5e0;
+    }
+
+    .bridge a:hover {
+      border-bottom-color: #1a4b6d;
+    }
+
+    /* 收藏与持续关注段落 */
+    .keep-section {
+      background: #f4f7fa;
+      border-radius: 22px;
+      padding: 1.6rem 1.8rem;
+      margin: 2.2rem 0 2rem 0;
+      border: 1px solid #dee6ed;
+    }
+
+    .keep-section h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #122b40;
+      margin-bottom: 0.8rem;
+    }
+
+    .keep-section p {
+      font-size: 0.98rem;
+      margin-bottom: 0.7rem;
+      color: #1f374b;
+    }
+
+    .keep-section ul {
+      list-style: none;
+      padding: 0.4rem 0 0.2rem 0;
+    }
+
+    .keep-section ul li {
+      padding: 0.35rem 0 0.35rem 1.6rem;
+      position: relative;
+      font-size: 0.96rem;
+      color: #1b354b;
+    }
+
+    .keep-section ul li::before {
+      content: "·";
+      position: absolute;
+      left: 0.4rem;
+      color: #4b6d88;
+      font-weight: bold;
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .keep-section a {
+      color: #1a4b6d;
+      text-decoration: none;
+      border-bottom: 1px solid #bcccd9;
+      font-weight: 500;
+    }
+
+    .keep-section a:hover {
+      border-bottom-color: #1a4b6d;
+    }
+
+    /* FAQ 摘要 — 极简风格 */
+    .faq-mini {
+      margin: 2.3rem 0 1.5rem 0;
+      background: #f8fafc;
+      border-radius: 18px;
+      padding: 1.2rem 1.5rem;
+      border: 1px solid #e2e9f0;
+    }
+
+    .faq-mini details {
+      margin-bottom: 0.3rem;
+      font-size: 0.95rem;
+    }
+
+    .faq-mini summary {
+      font-weight: 500;
+      color: #1f3c54;
+      cursor: pointer;
+      padding: 0.4rem 0;
+      border-bottom: 1px dashed #d1dce6;
+    }
+
+    .faq-mini summary::-webkit-details-marker {
+      color: #6a85a0;
+    }
+
+    .faq-mini details p {
+      margin: 0.7rem 0 0.5rem 0;
+      padding-left: 0.5rem;
+      color: #31495e;
+      border-left: 2px solid #ccd9e3;
+      padding-left: 1rem;
+    }
+
+    .footer-note {
+      font-size: 0.85rem;
+      color: #697e92;
+      text-align: center;
+      border-top: 1px solid #e5ebf0;
+      padding-top: 1.5rem;
+      margin-top: 1rem;
+      letter-spacing: 0.2px;
+    }
+
+    /* 响应式 */
+    @media (max-width: 540px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      .page {
+        padding: 1.8rem 1.2rem;
+        border-radius: 20px;
+      }
+      h1 {
+        font-size: 1.7rem;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .intro {
+        padding: 1.2rem;
+        font-size: 1rem;
+      }
+      .keep-section {
+        padding: 1.3rem;
+      }
+    }
+
+    @media (min-width: 820px) {
+      .page {
+        padding: 3.2rem 2.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <span class="hero-tag">再次回到这里 · 持续关注</span>
+
+  <h1>一次收藏，每次相逢</h1>
+
+  <div class="intro">
+    <strong>有些页面你并非初次抵达，而是选择再次打开。</strong> 
+    对许多活跃用户而言，<a href="https://h5portal-leyu.com.cn">乐鱼体育</a> 已经成为一个习惯性锚点——无论从哪个入口出发，最后总会回到这个信息集中、结构清晰的体育内容门户。它不是一次性的跳转页，而是一个值得留在书签栏、反复浏览的枢纽。
+  </div>
+
+  <!-- 特点列表：四张卡片 -->
+  <div class="feature-grid">
+    <div class="card">
+      <h3>导航直观</h3>
+      <p>板块层次明确，从赛事快讯到深度分析，路径简练，减少点击损耗。新访客也能在数秒内定位目标内容。</p>
+    </div>
+    <div class="card">
+      <h3>更新节奏稳定</h3>
+      <p>保持每日信息流推送，覆盖主流联赛与即时战报。每一次回来，都能看到有质量的新内容，而非陈旧堆砌。</p>
+    </div>
+    <div class="card">
+      <h3>结构轻量化</h3>
+      <p>页面加载优先度经过取舍，核心文本与关键链接优先呈现。即使网络波动，基础浏览体验依然顺畅。</p>
+    </div>
+    <div class="card">
+      <h3>跨端一致性</h3>
+      <p>从桌面浏览器到手机竖屏，界面组件自动适配，收藏夹里的链接在任何设备上打开都不会变形错位。</p>
+    </div>
+  </div>
+
+  <!-- 承接段落：从再访切入 -->
+  <div class="bridge">
+    频繁回来浏览的用户会发现，<a href="https://h5portal-leyu.com.cn">乐鱼体育</a> 的页面结构始终保持克制——不堆砌模块、不做浮夸动效，把阅读和导航的优先级放在首位。这种稳定性恰好是“持续关注”的前提：每一次打开，都像回到一个熟悉的、整理好的空间。
+  </div>
+
+  <!-- 收藏与持续关注 -->
+  <div class="keep-section">
+    <h2>收藏、保存、反复回来</h2>
+    <p>将链接加入浏览器书签，或保存在笔记工具里——一个稳定更新的内容页面理应成为长期参考点。以下是多数回访用户的实际习惯：</p>
+    <ul>
+      <li>每周固定查看1–2次，关注赛事焦点与数据汇总</li>
+      <li>使用移动端标签页保留，随时划回浏览</li>
+      <li>在其他平台看到相关内容后，回到这里对照原始信息</li>
+    </ul>
+    <p style="margin-top: 0.8rem;">如果你还没有把 <a href="https://h5portal-leyu.com.cn">乐鱼体育</a> 加入书签，现在就是一个合适的时机——不是因为它“必须被收藏”，而是因为一个信息密度高、界面干净的页面，值得在需要时被快速找到。</p>
+  </div>
+
+  <!-- FAQ 摘要（温和收束） -->
+  <div class="faq-mini">
+    <details>
+      <summary>这个页面适合什么类型的访客？</summary>
+      <p>日常关注体育信息、希望避免被低频内容干扰的用户。页面更偏向“工具型”定位，而非娱乐化推送。</p>
+    </details>
+    <details>
+      <summary>页面内容是否会不定期调整？</summary>
+      <p>结构保持长期稳定，更新体现在信息层与专题模块。你可以放心保存，不必担心频繁的布局变更。</p>
+    </details>
+  </div>
+
+  <div class="footer-note">
+    — 简洁 · 稳定 · 可回访 —
+  </div>
+</div>
+</body>
+</html>
