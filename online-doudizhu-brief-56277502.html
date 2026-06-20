@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>斗地主 · 牌局背后的智慧与乐趣</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            background: radial-gradient(circle at 20% 30%, #fce8d9, #f7d3b0 50%, #f0bc8a);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem 1rem;
+        }
+
+        .card {
+            max-width: 820px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(3px);
+            border-radius: 32px;
+            padding: 2.4rem 2.6rem;
+            box-shadow: 0 12px 40px rgba(140, 80, 40, 0.18), 0 4px 12px rgba(0, 0, 0, 0.06);
+            transition: box-shadow 0.25s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 16px 48px rgba(150, 80, 30, 0.22);
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: #5b2e1c;
+            margin-bottom: 0.2rem;
+            line-height: 1.2;
+            border-left: 6px solid #d9884a;
+            padding-left: 1rem;
+        }
+
+        .subhead {
+            font-size: 1.05rem;
+            color: #7a503a;
+            margin-bottom: 1.8rem;
+            font-weight: 400;
+            border-bottom: 1px solid #ebd6c2;
+            padding-bottom: 0.9rem;
+        }
+
+        .summary {
+            background: #fef7f0;
+            border-radius: 20px;
+            padding: 1.4rem 1.8rem;
+            margin-bottom: 2rem;
+            font-size: 1.02rem;
+            color: #3d2a1f;
+            box-shadow: inset 0 1px 4px rgba(200, 140, 100, 0.08);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 550;
+            color: #4f2b1a;
+            margin-top: 2.2rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, #d9884a, transparent);
+            border-radius: 4px;
+        }
+
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 1.4rem 0 1.6rem;
+        }
+
+        .feature-item {
+            flex: 1 1 180px;
+            background: #f9ede2;
+            border-radius: 20px;
+            padding: 1rem 1.2rem;
+            transition: background 0.2s, transform 0.15s;
+        }
+
+        .feature-item:hover {
+            background: #f3e1d0;
+            transform: translateY(-2px);
+        }
+
+        .feature-item strong {
+            display: block;
+            font-size: 1.1rem;
+            color: #653a23;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-item p {
+            font-size: 0.94rem;
+            color: #4a3527;
+        }
+
+        .use-scenario {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.2rem 0 1.8rem;
+        }
+
+        .scenario-card {
+            background: #fcf2e9;
+            border-radius: 18px;
+            padding: 1rem 1.4rem;
+            flex: 1 1 150px;
+            border: 1px solid #e7d0bb;
+        }
+
+        .scenario-card span {
+            font-weight: 550;
+            color: #5b341f;
+            font-size: 1rem;
+        }
+
+        .scenario-card p {
+            font-size: 0.9rem;
+            color: #4f3829;
+            margin-top: 0.2rem;
+        }
+
+        .faq-mini {
+            background: #faf0e6;
+            border-radius: 20px;
+            padding: 1.2rem 1.6rem;
+            margin: 1.8rem 0 1.4rem;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.6rem;
+            border-bottom: 1px solid #e6d1be;
+            padding-bottom: 0.6rem;
+        }
+
+        .faq-mini details:last-of-type {
+            border-bottom: none;
+        }
+
+        .faq-mini summary {
+            font-weight: 530;
+            color: #4f2f1c;
+            cursor: pointer;
+            list-style: '▸ ';
+            padding: 0.2rem 0;
+        }
+
+        .faq-mini details[open] summary {
+            list-style: '▾ ';
+        }
+
+        .faq-mini p {
+            color: #3b2b21;
+            font-size: 0.96rem;
+            padding: 0.3rem 0 0.2rem 1.2rem;
+        }
+
+        .cta-sentence {
+            background: #e7d2be;
+            border-radius: 60px;
+            padding: 0.9rem 1.8rem;
+            display: inline-block;
+            margin: 1rem 0 0.4rem;
+            font-size: 1.05rem;
+            color: #2f1d14;
+            transition: background 0.2s;
+        }
+
+        .cta-sentence a {
+            color: #3f2416;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.1rem 0.4rem;
+            border-radius: 28px;
+            background: #faeade;
+            transition: background 0.2s, box-shadow 0.15s;
+        }
+
+        .cta-sentence a:hover {
+            background: #fcebd9;
+            box-shadow: 0 2px 10px rgba(180, 100, 40, 0.2);
+        }
+
+        .note {
+            font-size: 0.9rem;
+            color: #6a4f3b;
+            margin-top: 1.6rem;
+            padding-top: 1rem;
+            border-top: 1px solid #dac2ae;
+            letter-spacing: 0.01em;
+        }
+
+        .note strong {
+            color: #482d1d;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 1.8rem 1.2rem;
+            }
+            h1 {
+                font-size: 1.9rem;
+                padding-left: 0.7rem;
+            }
+            .feature-grid {
+                flex-direction: column;
+            }
+            .feature-item {
+                flex: 1 1 auto;
+            }
+            .use-scenario {
+                flex-direction: column;
+            }
+            .cta-sentence {
+                font-size: 0.98rem;
+                padding: 0.7rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>斗地主 · 牌局中的逻辑与张力</h1>
+        <div class="subhead">从一副牌看透组合、概率与心理</div>
+
+        <div class="summary">
+            <p>斗地主不是单纯的运气比拼，它融合了叫牌判断、牌型拆解与位置博弈。每一局都是 54 张牌背后的有限信息推演。作为一款中国民间流传最广的三人对抗游戏，它的变数在于如何用手中资源压制对手、配合同伴。在 <a href="https://online-doudizhu.com" style="color:#935e3a; text-decoration: underline; font-weight:500;">斗地主</a> 的在线版本中，你可以随时体会这种节奏紧凑、充满变数的牌局思考过程，无需繁琐准备。</p>
+        </div>
+
+        <h2>核心亮点</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <strong>🧩 牌型拆解</strong>
+                <p>顺子、对子、三带、炸弹——每种组合的打出时机影响整个局势。学会拆牌与重组是进阶第一步。</p>
+            </div>
+            <div class="feature-item">
+                <strong>⚖️ 叫牌权衡</strong>
+                <p>叫地主还是不叫？依据底牌补牌概率、自身牌型分布，做出期望值最高的决定。</p>
+            </div>
+            <div class="feature-item">
+                <strong>🧠 位置记忆</strong>
+                <p>通过出牌顺序和已现牌张推算剩余关键牌的位置，把模糊信息转化为判断依据。</p>
+            </div>
+            <div class="feature-item">
+                <strong>🔄 节奏控制</strong>
+                <p>主动出牌时的压迫与被动跟牌时的忍耐，交替构成牌局的心理流动。</p>
+            </div>
+        </div>
+
+        <h2>适用场景</h2>
+        <div class="use-scenario">
+            <div class="scenario-card">
+                <span>☕ 碎片时间</span>
+                <p>通勤途中或午休间隙，一局斗地主约 5–10 分钟，适合快速切换注意力。</p>
+            </div>
+            <div class="scenario-card">
+                <span>👥 线上小聚</span>
+                <p>与朋友远程开一局，语音配合出牌，延续线下牌桌的互动感。</p>
+            </div>
+            <div class="scenario-card">
+                <span>🧩 策略练习</span>
+                <p>通过反复对局训练牌感，提升对牌张组合与概率的直觉反应。</p>
+            </div>
+            <div class="scenario-card">
+                <span>📖 文化体验</span>
+                <p>了解发源于湖北一带的玩法如何演变为全国性的牌类项目。</p>
+            </div>
+        </div>
+
+        <div class="faq-mini">
+            <h2 style="margin-top:0; font-size:1.3rem;">常见疑问摘要</h2>
+            <details>
+                <summary>斗地主需要记住所有出过的牌吗？</summary>
+                <p>不必强求全记，但习惯性关注 2、A、大小王以及关键牌（如 7、10）的剩余数量，能有效减少误判。高水平玩家会逐步扩大记忆范围。</p>
+            </details>
+            <details>
+                <summary>为什么有时牌很好却输掉了？</summary>
+                <p>牌力强不等于必胜。位置劣势、错误叫牌、过早暴露牌型或缺乏与同伴的间接配合，都可能导致优势局翻盘。斗地主中信息管理和节奏比绝对牌力更关键。</p>
+            </details>
+            <details>
+                <summary>在线玩和线下感觉有差别吗？</summary>
+                <p>主要差别在于自动理牌、出牌时效和无法看到对手表情。但核心的策略维度——叫牌、牌型规划、剩余牌推断——完全一致。在线版省去了洗牌发牌时间，更专注于决策本身。</p>
+            </details>
+            <details>
+                <summary>新手怎么快速上手？</summary>
+                <p>建议先从叫地主开始，体会作为主力进攻方的压力与收益。然后尝试农民角色，学习封牌与配合。多留意炸弹的威慑力和对子传递的作用。</p>
+            </details>
+        </div>
+
+        <div class="cta-sentence">
+            ➔ 想直接开始一局？<a href="https://online-doudizhu.com">斗地主</a> 的页面已经为你准备好了干净的对局环境。
+        </div>
+
+        <div class="note">
+            <strong>一点说明：</strong> 本页面仅介绍这款牌类游戏本身的逻辑与乐趣，所提供的链接指向一个在线对战平台。所有牌局结果依赖玩家决策，平台不对具体输赢做任何承诺。建议适度游戏，享受思考乐趣。
+        </div>
+    </div>
+</body>
+</html>
