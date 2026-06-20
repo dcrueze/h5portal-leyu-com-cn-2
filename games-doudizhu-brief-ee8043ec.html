@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>斗地主 · 简明指南与日常提醒</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f4f9fc;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1c2f3b;
+            padding: 1.2rem 1rem 2.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 主容器 – 杂志网格感 */
+        .magazine {
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 2.2rem;
+        }
+
+        /* ------ hero / 横幅 ------ */
+        .hero {
+            background: linear-gradient(135deg, #0c3b4a 0%, #1c6a7a 70%, #2b8b8f 100%);
+            border-radius: 36px 36px 28px 28px;
+            padding: 2.8rem 2rem 2.2rem;
+            box-shadow: 0 8px 28px rgba(18, 78, 88, 0.20);
+            color: #f0fbfd;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "♠ ♥ ♦ ♣";
+            position: absolute;
+            bottom: -8px;
+            right: -10px;
+            font-size: 5rem;
+            letter-spacing: 0.3rem;
+            opacity: 0.09;
+            color: #b1e6ed;
+            pointer-events: none;
+            transform: rotate(-6deg);
+            white-space: nowrap;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            text-shadow: 0 2px 6px rgba(0,20,28,0.25);
+        }
+
+        .hero .sub {
+            display: inline-block;
+            margin-top: 0.7rem;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(2px);
+            padding: 0.25rem 1.4rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #d8f2f7;
+        }
+
+        .hero .sub i {
+            font-style: normal;
+            margin: 0 0.2rem;
+        }
+
+        /* ------ 卡片网格通用 ------ */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.6rem 1.2rem 1.4rem;
+            box-shadow: 0 4px 12px rgba(0, 30, 40, 0.06);
+            border: 1px solid #dcecf0;
+            transition: box-shadow 0.15s, transform 0.1s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 22px rgba(18, 82, 92, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0c4b58;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.01em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card h3 .emoji-deco {
+            font-size: 1.15rem;
+        }
+
+        .card p {
+            font-size: 0.96rem;
+            color: #2b4754;
+            margin-bottom: 0.3rem;
+        }
+
+        .card .small-note {
+            font-size: 0.84rem;
+            color: #5d7b88;
+            margin-top: 0.6rem;
+            border-top: 1px dashed #caddf0;
+            padding-top: 0.5rem;
+        }
+
+        .card .badge {
+            background: #d9eef3;
+            color: #09505c;
+            font-size: 0.7rem;
+            font-weight: 500;
+            padding: 0.15rem 0.6rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-right: 0.5rem;
+            letter-spacing: 0.4px;
+        }
+
+        /* 宽卡片 (横跨两列) */
+        .card-wide {
+            grid-column: 1 / -1;
+            background: white;
+            border-radius: 24px;
+            padding: 1.5rem 1.4rem;
+            box-shadow: 0 4px 12px rgba(0, 30, 40, 0.05);
+            border: 1px solid #dcecf0;
+        }
+
+        .card-wide h2 {
+            font-size: 1.25rem;
+            color: #0f4856;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-wide p {
+            color: #1e4150;
+            font-size: 0.98rem;
+        }
+
+        .card-wide .meta-tip {
+            background: #eaf5f8;
+            padding: 0.8rem 1rem;
+            border-radius: 18px;
+            margin-top: 0.9rem;
+            border-left: 5px solid #269aa8;
+            font-size: 0.92rem;
+            color: #0c3b48;
+        }
+
+        /* 内嵌链接样式 */
+        a {
+            color: #117b8a;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #8fc9d4;
+            transition: color 0.1s, border-color 0.1s;
+        }
+
+        a:hover {
+            color: #064857;
+            border-bottom-color: #064857;
+        }
+
+        /* 页尾提示卡片 */
+        .footer-access {
+            background: #e8f1f5;
+            border-radius: 36px 36px 24px 24px;
+            padding: 1.8rem 1.5rem;
+            text-align: center;
+            border: 1px solid #bcd7df;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.01);
+            margin-top: 0.4rem;
+        }
+
+        .footer-access p {
+            font-size: 1rem;
+            color: #1a4553;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .footer-access .small-print {
+            font-size: 0.8rem;
+            color: #5f828f;
+            margin-top: 0.8rem;
+            border-top: 1px solid #c7dde4;
+            padding-top: 0.7rem;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 640px) {
+            body {
+                padding: 0.7rem 0.7rem 2rem;
+            }
+            .hero {
+                padding: 2rem 1rem 1.6rem;
+                border-radius: 28px;
+            }
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .hero .sub {
+                font-size: 0.8rem;
+                padding: 0.2rem 1rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .card-wide {
+                padding: 1.2rem 1rem;
+            }
+            .card {
+                padding: 1.2rem 1rem;
+            }
+            .footer-access {
+                padding: 1.4rem 1rem;
+                border-radius: 28px;
+            }
+        }
+
+        @media (min-width: 800px) {
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+            .card p {
+                font-size: 1rem;
+            }
+        }
+
+        /* 微装饰 */
+        .divider-wave {
+            text-align: center;
+            opacity: 0.2;
+            font-size: 1.2rem;
+            letter-spacing: 6px;
+            color: #17818f;
+            margin: -0.2rem 0;
+            user-select: none;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #b0cfda, transparent);
+            margin: 0.2rem 0 0.6rem;
+        }
+    </style>
+</head>
+<body>
+<div class="magazine">
+
+    <!-- 首页横幅 hero -->
+    <header class="hero">
+        <h1>斗地主 · 日常牌局</h1>
+        <span class="sub"><i>简明指南</i>   ·   牌桌常识 · 访问提醒</span>
+        <div style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.75; letter-spacing: 1px;">
+            ♠ ♥ ♣ ♦
+        </div>
+    </header>
+
+    <!-- 背景说明 + 简明切入 – 卡片宽 -->
+    <div class="card-wide">
+        <h2>🎯 牌局背后 · 一份轻松的说明</h2>
+        <p>在休闲时光里，<a href="https://games-doudizhu.com">斗地主</a> 始终是很多人桌上的熟悉面孔。三个人，一副牌，叫地主、抢地主、农民配合——规则不复杂，但每一局都有变化。无论是通勤路上、午休间隙，还是朋友聚会的暖场环节，它都是一款不需要太多准备就能开始的游戏。</p>
+        <div class="meta-tip">
+            💡 小提醒：玩牌前确认好角色和出牌顺序，避免误叫或跳牌；记牌不是必须，但留意大牌和炸弹能让节奏更顺。
+        </div>
+    </div>
+
+    <!-- 三段自然介绍 → 三个卡片网格 (杂志风格) -->
+    <div class="card-grid">
+
+        <!-- 卡片 1: 从规则切入 -->
+        <div class="card">
+            <h3><span class="emoji-deco">📋</span> 规则概略</h3>
+            <p>地主一人对抗两位农民。先出完牌的一方获胜。叫牌环节可以“不加倍”或“加倍”，底分随之浮动。顺子、连对、三带等牌型要留意长度和组合。</p>
+            <div class="small-note">
+                <span class="badge">Tip</span> 有炸弹或火箭时，牌局更有转折。
+            </div>
+        </div>
+
+        <!-- 卡片 2: 常见场景与节奏 -->
+        <div class="card">
+            <h3><span class="emoji-deco">🕒</span> 场景与节奏</h3>
+            <p>三人成局，每人17张牌，地主多3张。翻牌确定地主，之后进入出牌阶段。适合快速对局，一般5-12分钟一局。若时间充裕，也可以连续打多轮。</p>
+            <div class="small-note">
+                <span class="badge">提醒</span> 如果牌运不佳，不妨先防守，等待农民配合失误。
+            </div>
+        </div>
+
+        <!-- 卡片 3: 访问与体验 (自然嵌入链接) -->
+        <div class="card">
+            <h3><span class="emoji-deco">🧭</span> 随时开始</h3>
+            <p>打开 <a href="https://games-doudizhu.com">斗地主</a> 即可匹配或创建房间，无需下载额外程序。页面响应快，适配手机和电脑。无论是新玩家还是老手，都能快速开始一局。</p>
+            <div class="small-note">
+                <span class="badge">访问</span> 网络顺畅体验更佳。
+            </div>
+        </div>
+
+        <!-- 卡片 4: 简明 FAQ 摘要 + 差异化 -->
+        <div class="card">
+            <h3><span class="emoji-deco">❓</span> 常见疑问摘要</h3>
+            <p><strong>可以跟电脑玩吗？</strong> 目前主要为线上真人匹配，部分模式含人机。<br>
+            <strong>牌型规则是否标准？</strong> 采用通用斗地主规则，无额外自定义。</p>
+            <div class="small-note">
+                <span class="badge">FAQ</span> 更多细节可查看页面内提示。
+            </div>
+        </div>
+    </div>
+
+    <!-- 额外的提醒段落 – 宽卡片，带有生活化语气 -->
+    <div class="card-wide">
+        <h2>📌 日常牌桌提醒</h2>
+        <p>打牌是放松，也是交流。如果连续输了几局，不妨换个节奏，喝口水，调整一下叫牌策略。很多时候，农民之间的默契比手牌更重要——适当传递出牌权，比强行抢出更有机会。<br>
+        另外，部分平台在出牌时有倒计时，留意时间提示，避免超时自动过牌。</p>
+        <div class="meta-tip" style="border-left-color: #3f9aa8;">
+            🔹 小习惯：出牌前扫一眼剩余张数，推测同伴或地主的大致手数。
+        </div>
+        <p style="margin-top: 0.7rem; font-size: 0.9rem; color: #2d5e6b;">点击页面上的 <a href="https://games-doudizhu.com">斗地主</a> 链接，可以直接进入牌局页面，无需注册即可开始匹配。</p>
+    </div>
+
+    <!-- 装饰分隔 -->
+    <div class="divider-wave">✧ ✦ ✧</div>
+
+    <!-- 页尾访问提示 (杂志脚注) -->
+    <div class="footer-access">
+        <p>本文为日常指引，不带推广目的。如果想要亲自体验规则与牌感，可以直接前往 <a href="https://games-doudizhu.com">斗地主</a>，那里已经准备好房间和对手。记住：享受过程，理性出牌。</p>
+        <div class="small-print">
+            参考版本 · 2025 · 页面内容只作一般性介绍，具体规则以实际游戏界面为准。
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
